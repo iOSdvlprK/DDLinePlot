@@ -12,6 +12,8 @@ struct ContentView: View {
         NavigationStack {
             List {
                 NavigationLink("Random Plot", destination: RandomPlotView())
+                
+                NavigationLink("Lissajous Curve", destination: LissajousView(A: 3, B: 3, a: 1, b: 4, delta: .pi / 4))
             }
             .navigationTitle("Lineplot")
         }
