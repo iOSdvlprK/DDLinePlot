@@ -9,16 +9,51 @@ import SwiftUI
 import Charts
 
 struct CosineTaylorPolynomial: View {
+    @State private var n = 0.0
+    
     var body: some View {
-        Chart {
-            LinePlot(x: "x", y: "y") { x in
-                taylorCosine(x: x, n: 0)
+        VStack {
+            Chart { [n] in
+                LinePlot(x: "x", y: "y") { x in
+                    cos(x)
+                }
+                .foregroundStyle(.blue)
+                
+                LinePlot(x: "x", y: "y") { x in
+                    taylorCosine(x: x, n: n)
+                }
+                .foregroundStyle(.green)
             }
-            .foregroundStyle(.green)
+            .padding()
+            .chartXScale(domain: -8...8)
+            .chartYScale(domain: -8...8)
+            
+            HStack {
+                Button(action: {
+                    withAnimation {
+                        if n >= 2 { n -= 2 }
+                    }
+                }, label: {
+                    Image(systemName: "arrow.left")
+                        .imageScale(.large)
+                })
+                
+                Spacer()
+                
+                Button(action: {
+                    withAnimation {
+                        n += 2
+                    }
+                }, label: {
+                    Image(systemName: "arrow.right")
+                        .imageScale(.large)
+                })
+            }
+            .overlay {
+                Text("n = \(Int(n))")
+            }
         }
         .padding()
-        .chartXScale(domain: -8...8)
-        .chartYScale(domain: -8...8)
     }
 }
 

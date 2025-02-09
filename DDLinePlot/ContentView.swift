@@ -14,8 +14,10 @@ struct ContentView: View {
                 NavigationLink("Random Plot", destination: RandomPlotView())
                 
                 NavigationLink("Lissajous Curve", destination: LissajousView(A: 3, B: 3, a: 1, b: 4, delta: .pi / 4))
+                
+                NavigationLink("Cosine and Taylor Polynomial", destination: CosineTaylorPolynomial())
             }
-            .navigationTitle("Lineplot")
+            .navigationTitle("Line Plot")
         }
     }
 }
